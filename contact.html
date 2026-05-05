@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link href="https://googleapis.com" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Times New Roman", Times, serif; }
+
+        body {
+            background-color: #360000;
+            color: white; /* Main letters changed to White */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #000000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid rgb(49, 0, 0); /* Broadline changed to White */
+        }
+
+        header h1 { font-size: 32px; font-weight: bold; }
+
+        header h1 a {
+            text-decoration: none;
+            color: white; /* Link color changed to White */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: #ffb6c1; text-decoration: underline; }
+
+        section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Centered the card vertically */
+            padding: 50px 20px;
+        }
+
+        
+        .contact-card {
+            background-color: rgb(0, 0, 0); 
+            border: 4px solid rgb(126, 126, 126); 
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            filter: drop-shadow(12px 12px 0px rgba(168, 168, 168, 0.253)); 
+        }
+
+        .contact-card h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: 4px solid white;
+            display: inline-block;
+            padding-bottom: 5px;
+            color: white;
+        }
+
+        .contact-info {
+            font-size: 20px;
+            line-height: 2;
+            color: white;
+        }
+
+        .contact-info strong {
+            display: block;
+            font-size: 22px;
+            margin-top: 15px;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgb(6, 98, 4);
+            border-top: 4px solid white; /* White Broadline */
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><a href="index.html"> 𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕯𝖎𝖆𝖗𝖞 </a></h1>
+    <nav>
+        <a href="index.html">𝕳𝖔𝖒𝖊</a> 
+        <a href="about.html">𝕬𝖇𝖔𝖚𝖙</a>
+        <a href="diary.html">𝕯𝖎𝖆𝖗𝖞</a>
+        <a href="gallery.html">𝕲𝖆𝖑𝖑𝖊𝖗𝖞</a>
+        <a href="contact.html">𝕮𝖔𝖓𝖙𝖆𝖈𝖙</a>
+    </nav>
+</header>
+
+<section>
+    <div class="contact-card">
+        <h2 >𝕮𝖔𝖓𝖙𝖆𝖈𝖙 𝕴𝖓𝖋𝖔𝖗𝖒𝖆𝖙𝖎𝖔𝖓:</h2>
+        <div class="contact-info">
+            <strong>𝕰𝖒𝖆𝖎𝖑:</strong>
+            <p>ramosayti@gmail.com</p>
+            
+            <strong>𝕻𝖍𝖔𝖓𝖊:</strong>
+            <p>+63 916 222 0238</p>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
