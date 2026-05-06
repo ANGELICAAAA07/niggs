@@ -3,182 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gallery</title>
-<style>
-* {
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: "Times New Roman", Times, serif; 
-}
+    <title>Gallery | My College Diary</title>
+    <!-- Google Fonts for consistency -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Crimson+Pro:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #310000;
+            --accent-red: #700808;
+            --accent-pink: #ffffff;
+            --glass: rgba(0, 0, 0, 0.6);
+    
+            --serif: 'Crimson Pro', serif;
+        }
 
-body { 
-    background: linear-gradient(to right,#360000, #844646); /* soft pink gradient */
-    color: white; 
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-header { 
-    padding: 20px 60px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    border-bottom: 4px solid white; 
-    background: rgba(0, 0, 0, 0.7); /* pink header */
-}
+        body { 
+            background: linear-gradient(135deg, var(--bg-dark), #1a0000);
+            color: white; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            font-family: var(--serif);
+        }
 
-header h1 a {
-    text-decoration: none;
-    color: white;
-    font-size: 32px;
-    font-weight: bold;
-}
+        /* --- Gothic Header --- */
+        header { 
+            padding: 20px 60px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid rgba(68, 4, 4, 0.484); 
+            background: rgba(30, 1, 1, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-nav a { 
-    color: white; 
-    text-decoration: none; 
-    margin-left: 25px; 
-    font-size: 20px; 
-    font-weight: bold; 
-}
+        header h1 a {
+            text-decoration: none;
+            color: white;
+            font-family: var(--gothic);
+            font-size: 32px;
+            transition: 0.3s;
+        }
 
-nav a:hover { 
-    text-decoration: underline; 
-    color: #fff0f5; 
-    transition: 0.3s; 
-}
+        header h1 a:hover { color: var(--accent-pink); }
 
-.container { 
-    flex: 1;
-    padding: 50px 10%; 
-    text-align: center; 
-}
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            margin-left: 25px; 
+            font-size: 20px; 
+            font-family: var(--gothic);
+            transition: 0.3s;
+        }
 
-.grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 40px; 
-    margin-bottom: 60px;
-}
+        nav a:hover { 
+            color: var(--accent-pink); 
+            text-shadow: 0 0 10px var(--accent-pink);
+        }
 
-.gallery-item { 
-    background: white; 
-    border-radius: 20px; 
-    overflow: hidden; 
-    box-shadow: 12px 12px 0px black; 
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-}
+        /* --- Container & Grid --- */
+        .container { 
+            flex: 1;
+            padding: 50px 8%; 
+            text-align: center;
+        }
 
-.gallery-item:hover { 
-    transform: translateY(-10px); 
-    box-shadow: 18px 18px 0px black; 
-}
+        .container h2 {
+            font-family: var(--gothic);
+            font-size: 3rem;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
 
-.gallery-item img { 
-    width: 100%; 
-    height: 250px; 
-    object-fit: cover; 
-    border-bottom: 4px solid #4e0000; /* pink accent */
-}
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+            margin-bottom: 60px;
+        }
 
-.caption { 
-    padding: 20px; 
-    color: black; 
-    background-color: #fff;
-    text-align: left;
-}
+        /* --- Aesthetic Gallery Card --- */
+        .gallery-item { 
+            background: var(--glass); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid rgba(117, 103, 103, 0.877);
+            box-shadow: 0 10px 30px rgba(148, 21, 21, 0.942); 
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+        }
 
-.caption h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: #000000; /* pink title */
-}
+        .gallery-item:hover { 
+            transform: translateY(-15px) scale(1.03); 
+            border-color: var(--accent-pink);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
 
-.caption p {
-    font-size: 15px;
-    line-height: 1.4;
-    color: #333;
-}
+        .img-box {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
 
-footer { 
-    padding: 20px; 
-    border-top: 4px solid rgb(32, 5, 5); 
-    text-align: center; 
-    font-weight: bold; 
-    background: #520000; /* pink footer */
-    color: white;
-}
-</style>
+        .gallery-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 0.6s ease;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .gallery-item:hover img { 
+            transform: scale(1.1); 
+            filter: grayscale(0%);
+        }
+
+        /* --- Caption (Dark Mode) --- */
+        .caption { 
+            padding: 25px; 
+            text-align: left;
+            background: linear-gradient(to top, rgba(101, 28, 28, 0.9), transparent);
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .caption h3 {
+            font-family: var(--gothic);
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--accent-pink);
+            letter-spacing: 1px;
+        }
+
+        .caption p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #ddd;
+            font-style: italic;
+        }
+
+        
+    </style>
 </head>
 <body>
 
     <header>
-         <h1><a href="index.html"> 𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕯𝖎𝖆𝖗𝖞 </a></h1>
+    <h1><a href="index.html"> 𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕯𝖎𝖆𝖗𝖞 </a></h1>
     <nav>
         <a href="index.html">𝕳𝖔𝖒𝖊</a> 
         <a href="about.html">𝕬𝖇𝖔𝖚𝖙</a>
         <a href="diary.html">𝕯𝖎𝖆𝖗𝖞</a>
         <a href="gallery.html">𝕲𝖆𝖑𝖑𝖊𝖗𝖞</a>
         <a href="contact.html">𝕮𝖔𝖓𝖙𝖆𝖈𝖙</a>
-        </nav>
-    </header>
+    </nav>
+</header>
 
     <div class="container">
+        <h2>Visual Archive</h2>
         <div class="grid">
-    <div class="gallery-item">
-        <img src="quads.jpg" alt="New FRIENDS UNLOCK!">
-        <div class="caption">
-            <h3>MY QUADS </h3>
-            <p> This was when we bought matching bags, but I still haven’t used mine ‘cause it smelled SO bad </p>
-        </div>
-    </div>
+            
+            <div class="gallery-item">
+                <div class="img-box"><img src="quads.jpg" alt="Quads"></div>
+                <div class="caption">
+                    <h3>MY QUADS</h3>
+                    <p>Matching bags era! Still haven’t used mine though... it smelled SO bad. </p>
+                </div>
+            </div>
 
-    <div class="gallery-item">
-        <img src="champion.jpeg" alt="funrun">
-        <div class="caption">
-            <h3>IT WEEK!</h3>
-            <p>Vanie literally ate the singing contest and won. She’s been my idol since day one fr.</p>
-        </div>
-    </div>
+            <div class="gallery-item">
+                <div class="img-box"><img src="champion.jpeg" alt="IT Week"></div>
+                <div class="caption">
+                    <h3>IT WEEK!</h3>
+                    <p>Vanie literally ate the singing contest and won. She’s been my idol since day one fr. 🎤</p>
+                </div>
+            </div>
 
-    <div class="gallery-item">
-        <img src="cheerdance.jpeg" alt="itweek">
-        <div class="caption">
-            <h3>CHEERDANCE SF!</h3>
-            <p>This was sooo fun, we were basically family at this point. Gained core memories but not weight lol</p>
-        </div>
-    </div>
+            <div class="gallery-item">
+                <div class="img-box"><img src="cheerdance.jpeg" alt="Cheerdance"></div>
+                <div class="caption">
+                    <h3>CHEERDANCE SF!</h3>
+                    <p>Basically family at this point. Gained core memories but not weight lol. </p>
+                </div>
+            </div>
 
-    <div class="gallery-item">
-        <img src="cosplay.jpg" alt="firstcode">
-        <div class="caption">
-            <h3>MY FIRST TIME EXPERIENCE</h3>
-            <p>‘cause sir lowkey forced me but I actually loved it. I got to express myself through my character. Didn’t win but idc, the experience was worth it 
-</p>
-        </div>
-    </div>
+            <div class="gallery-item">
+                <div class="img-box"><img src="cosplay.jpg" alt="Cosplay"></div>
+                <div class="caption">
+                    <h3>MY FIRST TIME EXPERIENCE</h3>
+                    <p>Sir lowkey forced me but I actually loved it. Expressing myself through character was worth it! </p>
+                </div>
+            </div>
 
-    <div class="gallery-item">
-        <img src="gfko.jpeg" alt="religion">
-        <div class="caption">
-            <h3>MY TWIN</h3>
-            <p>We were both heartbroken here so we just stuck together like family. I’m literally with this person everywhere… as long as she pays for me</p>
-        </div>
-    </div>
+            <div class="gallery-item">
+                <div class="img-box"><img src="gfko.jpeg" alt="Twin"></div>
+                <div class="caption">
+                    <h3>MY TWIN</h3>
+                    <p>Heartbroken duo. Stuck together like family... as long as she pays for me!</p>
+                </div>
+            </div>
 
-    <div class="gallery-item">
-        <img src="itweek.jpeg" alt="kade">
-        <div class="caption">
-            <h3>SOLID 2-4!</h3>
-            <p>They’re so supportive fr, like I’m actually so happy they exist (us coded fr 🥹).</p>
-        </div>
-    </div>
-    <div class="gallery-item">
-        <img src="nstp.jpg" alt="kade">
+            <div class="gallery-item">
+                <div class="img-box"><img src="itweek.jpeg" alt="2-4"></div>
+                <div class="caption">
+                    <h3>SOLID 2-4!</h3>
+                    <p>Supportive fr, like I’m actually so happy they exist. Us coded. </p>
+                </div>
+            </div>
+            
+        <div class="gallery-item">
+        <div class="img-box"><img src="nstp.jpg" alt="2-4"></div>
         <div class="caption">
             <h3>NSTP CORE</h3>
             <p>This was a group thing where we donated clothes and food to the elderly. Lowkey wholesome ‘cause you get good grades AND you help people?? main character behavior fr</p>
@@ -209,7 +246,7 @@ footer {
     <div class="gallery-item">
         <img src="sirlinawan.jpg" alt="kade">
         <div class="caption">
-            <h3>WITH SIR LIN <3</h3>
+            <h3>WITH SIR LIN </h3>
             <p>Supportive prof?? rare spawn fr.. we were laughing at Kaye ‘cause she had no plus points, but she said “watch me” and came back second sem as a champion. character development arc fr
  </p>
         </div>
@@ -222,3 +259,7 @@ footer {
         </div>
     </div>
 </div>
+
+
+</body>
+</html>
