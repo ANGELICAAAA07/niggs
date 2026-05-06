@@ -4,134 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My College Diary</title>
+    <!-- Importing Gothic and elegant Serif fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Crimson+Pro:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Times New Roman", Times, serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-color: #310000;
+            --accent-pink: #a9061f;
+            --gothic-font: 'UnifrakturMaguntia', cursive;
+            --body-font: 'Crimson Pro', serif;
+        }
 
         body {
-            background: linear-gradient(to right,#360000, #844646);
-            color: rgb(255, 255, 255); 
+            background-color: var(--bg-color); 
+            color: white; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
+            overflow: hidden; /* Keeps the hero vibe tight */
+            font-family: var(--body-font);
+        }
+
+        /* --- Ambient Background Glow --- */
+        .glow {
+            position: fixed;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
+            bottom: -10%;
+            right: 10%;
+            z-index: 1;
+            pointer-events: none;
         }
 
         header {
-            padding: 20px 60px;
+            padding: 30px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid rgb(15, 0, 0); /* White Broadline */
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
         }
 
-        header h1 { font-size: 32px; font-weight: bold; }
-        
         header h1 a {
+            font-family: var(--gothic-font);
+            font-size: 32px;
             text-decoration: none;
             color: white;
-        }
-
-        nav a {
-            color: rgb(255, 255, 255);
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 20px;
-            font-weight: bold;
             transition: 0.3s;
         }
 
-        nav a:hover {
-            color: #ffb6c1; 
-            text-decoration: underline;
+        header h1 a:hover { color: var(--accent-pink); }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 20px;
+            font-family: var(--gothic-font);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
         }
 
+        nav a:hover {
+            color: var(--accent-pink);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        /* --- Hero Section --- */
         .hero {
             flex: 1;
             display: flex;
             align-items: flex-end; 
             justify-content: space-between;
             padding: 0 10%;
+            position: relative;
         }
 
         .hero-text {
-            padding-bottom: 15vh;
+            padding-bottom: 20vh;
             max-width: 600px;
+            z-index: 5;
+            animation: fadeInBlur 1.5s ease;
         }
 
         .hero-text h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            font-style: italic;
         }
 
-        .hero-text h2 { 
-            font-size: 70px; 
-            font-weight: bold;
-            line-height: 1.1;
-            border-bottom: 10px solid white; 
+        .hero-text h1 { 
+            font-family: var(--gothic-font);
+            font-size: 90px; 
+            line-height: 1;
+            border-bottom: 8px solid white; 
             display: inline-block;
             margin-bottom: 20px;
-            color: white;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
 
         .hero-text p {
             font-size: 22px;
-            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
 
+        /* --- Image with Parallax & Float --- */
         .hero-image {
-            height: 90vh; 
+            height: 95vh; 
             display: flex;
             align-items: flex-end;
+            z-index: 2;
         }
 
         .hero-image img {
             height: 100%; 
             width: auto;
-            display: block;
-          
-            filter: drop-shadow(15px 15px 0px black); 
-            margin-bottom: -4px; 
-            position: relative;
-            z-index: 5;
+            filter: drop-shadow(20px 0px 30px rgba(0,0,0,0.8));
+            /* Animated Floating Effect */
+            animation: floaty 5s ease-in-out infinite;
+            transition: transform 0.2s ease-out; /* For mouse parallax */
         }
 
-        footer {
-            padding: 20px;
-            border-top: 4px solid white; 
-            text-align: center;
-            font-weight: bold;
-            background: rgb(255, 255, 255); 
-            color: white;
-            position: relative;
-            z-index: 10;
+        /* --- Custom Cursor Follower --- */
+        #cursor-trace {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--accent-pink);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            transition: transform 0.15s ease-out;
         }
+
+        /* --- Animations --- */
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInBlur {
+            from { opacity: 0; filter: blur(10px); transform: translateX(-20px); }
+            to { opacity: 1; filter: blur(0); transform: translateX(0); }
+        }
+
     </style>
 </head>
 <body>
 
+    <div id="cursor-trace"></div>
+    <div class="glow"></div>
+
     <header>
-       <h1><a href="index.html">𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕯𝖎𝖆𝖗𝖞</a></h1>
-    <nav>
-        <a href="index.html">𝕳𝖔𝖒𝖊</a> 
-        <a href="about.html">𝕬𝖇𝖔𝖚𝖙</a>
-        <a href="diaryy.html">𝕯𝖎𝖆𝖗𝖞</a>
-        <a href="gallery.html">𝕲𝖆𝖑𝖑𝖊𝖗𝖞</a>
-        <a href="contact.html">𝕮𝖔𝖓𝖙𝖆𝖈𝖙</a>
-    </nav>
+        <h1><a href="index.html">My College Diary</a></h1>
+        <nav>
+            <a href="index.html">Home</a> 
+            <a href="about.html">About</a>
+            <a href="diary.html">Diary</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </nav>
     </header>
 
     <section class="hero">
         <div class="hero-text">
             <h3>Hi! I'm</h3>
-            <h2> ℜ𝔞𝔪𝔬𝔰,<br>𝔄𝔫𝔤𝔢𝔩𝔦𝔠𝔞 ℭ. </h2>
+            <h1>Ramos,<br>Angelica C.</h1>
             <p>BSIT Student at Colegio De Sta. Teresa De Avila</p>
         </div>
 
         <div class="hero-image">
-            <img src="injel.png" alt="angel">
+            <!-- Ensure your image file is named "injel.png" in the same folder -->
+            <img src="injel.png" alt="angel" id="hero-img">
         </div>
     </section>
 
+    <script>
+        // 1. Custom Cursor Trace
+        const trace = document.getElementById('cursor-trace');
+        document.addEventListener('mousemove', (e) => {
+            trace.style.left = e.clientX - 15 + 'px';
+            trace.style.top = e.clientY - 15 + 'px';
+        });
+
+        // 2. Subtle Parallax Effect on the Image
+        const img = document.getElementById('hero-img');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            img.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+    </script>
 
 </body>
 </html>
