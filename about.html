@@ -3,111 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>all about my College Diary</title>
-
+    <title>My College Lore</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Times New Roman", Times, serif;
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Crimson+Pro:ital,wght@0,300;0,600;1,300&display=swap');
+
+        :root {
+            --bg-color: #1a0505;
+            --accent-color: #8b0000;
+            --text-color: #e0d5d5;
+            --transition: all 0.4s ease-in-out;
         }
 
         body {
-            background-color: #360000; 
-            color: white; 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Crimson Pro', serif;
+            margin: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        header {
-            background-color: rgb(0, 0, 0);
-            padding: 20px 60px;
+        /* --- Floating Background Elements --- */
+        .ambient-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.1) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Navigation --- */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid rgb#360000;
+            padding: 2rem 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
-        header h1 {
-            font-size: 32px;
-            font-weight: bold;
+        .logo {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        /* Style to keep the title link white and remove underline */
-        header h1 a {
+        .nav-links a {
+            color: var(--text-color);
             text-decoration: none;
-            color: white;
+            margin-left: 20px;
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            opacity: 0.8;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 20px;
-            font-weight: bold;
-            transition: 0.3s;
+        .nav-links a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+            text-shadow: 0 0 8px var(--accent-color);
         }
 
-        nav a:hover {
-            color: #463739;
-            text-decoration: underline;
-        }
-
-        section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content:center;
-            align-items: center;
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        section h2 {
-            font-size: 60px;
-            color: rgb(136, 136, 136);
-            margin-bottom: 25px;
-            display: inline-block;
-        }
-
-        section p {
-            font-size: 24px;
+        /* --- Main Content --- */
+        main {
             max-width: 800px;
-            line-height: 1.6;
-            color: white; 
-            font-weight: 500;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        footer {
+        .hero-title {
             text-align: center;
-            padding: 20px;
-            background-color: rgb(0, 0, 0);
-            border-top: 4px solid rgb(0, 0, 0); 
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero-title span {
+            color: var(--accent-color);
+            animation: pulse 2s infinite;
+        }
+
+        .lore-text {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+
+        .vibe-tag {
+            font-style: italic;
+            font-weight: 600;
+            color: #fff;
+            padding: 0 5px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .highlight {
             font-weight: bold;
-            color: white;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Animations --- */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Custom Cursor (Desktop Only) --- */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: transform 0.1s;
+            z-index: 9999;
         }
     </style>
 </head>
-
 <body>
 
-<header>
-    <h1><a href="index.html"> 𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕯𝖎𝖆𝖗𝖞 </a></h1>
-    <nav>
-        <a href="index.html">𝕳𝖔𝖒𝖊</a> 
-        <a href="about.html">𝕬𝖇𝖔𝖚𝖙</a>
-        <a href="diary.html">𝕯𝖎𝖆𝖗𝖞</a>
-        <a href="gallery.html">𝕲𝖆𝖑𝖑𝖊𝖗𝖞</a>
-        <a href="contact.html">𝕮𝖔𝖓𝖙𝖆𝖈𝖙</a>
-    </nav>
-</header>
+    <div id="cursor"></div>
+    <div class="ambient-glow"></div>
 
-<section>
-  <div style="max-width: 1100px; margin: 0 auto; text-align: center; color: white;">
-    
-    <h2>╋━ 𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕷𝖔𝖗𝖊 ╋━</h2>
+    <nav>
+        <div class="logo">My College Diary</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="diary.html">Diary</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+
+    <main class="fade-in">
+        <h1 class="hero-title">
+            <span>╋━</span> My College Lore <span>╋━</span>
+        </h1>
+
+        <div class="lore-text">
+            <p>
+
     <p style="text-align: justify; line-height: 1.8; margin-bottom: 20px;">
       ╰┈➤   I’m Angelica Condes Ramos, but the besties just call me Angel or Gel. I’m currently beating the IT major allegations at Colegio de Sta. Teresa de Avila 
       and if I’m being fr, my current vibe is: <b><em>Social Butterfly ؛༊ / Thriving ♱ / Just here for the presence ⚚</em></b>.
@@ -118,10 +178,22 @@
     <p style="text-align: justify; line-height: 1.8;">
       This isn’t just a quest log for grades and classes; it’s for the <b>"in-between" eras</b>—late nights, existential crises, the tiny Ws, and the slow realization of who I’m actually becoming. So, here it is: the unfiltered, unedited plot of my college years. It’s probably gonna be a fever dream, but I’m glad I’m catching it all on 4K.
     </p>
+    </div>
+    </main>
 
-  </div> 
-</section>
+    <script>
+        // Simple Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
 
-
+        // Hover effect for links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2)');
+            link.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+    </script>
 </body>
 </html>
