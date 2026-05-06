@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>all about my diary</title>
+    <title>Diary | My College Diary</title>
     <style>
+        :root {
+            --bg-color: #310000;
+            --accent-pink: #ffffff;
+            --gothic: 'UnifrakturMaguntia', cursive;
+            --glass: rgba(0, 0, 0, 0.6);
+        }
+
+        /* 1. Custom Cursor */
+        #cursor-follower {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--accent-pink);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            transition: transform 0.1s ease-out;
+            transform: translate(-50%, -50%);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Times New Roman", Times, serif; }
 
         body {
-            background-color: #360000;
+            background-color: var(--bg-color);
             color: white; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             scroll-behavior: smooth;
+            transition: background 0.5s ease;
         }
 
         header {
-            background-color:rgb(0, 0, 0);
+            background-color: #000000;
             padding: 20px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid rgb(29, 2, 2); 
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
-        header h1 { font-size: 32px; font-weight: bold; }
 
         header h1 a {
             text-decoration: none;
             color: white;
+            font-family: var(--gothic);
+            font-size: 32px;
         }
 
         nav a {
@@ -37,11 +62,25 @@
             text-decoration: none;
             margin-left: 25px;
             font-size: 20px;
-            font-weight: bold;
+            font-family: var(--gothic);
+            position: relative;
             transition: 0.3s;
         }
 
-        nav a:hover { color: #ffb6c1; text-decoration: underline; }
+        nav a:hover { color: var(--accent-pink); text-shadow: 0 0 8px var(--accent-pink); }
+
+        /* 2. Magnetic Nav Line */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-pink);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after { width: 100%; }
 
         section {
             flex: 1;
@@ -51,103 +90,107 @@
             padding: 50px 20px;
         }
 
+        /* 3. Glassmorphism Diary Entries */
         .diary-entry {
-            background-color: #fff0f5; 
-            color: black; 
-            border: 4px solid white; 
-            border-radius: 15px;
-            padding: 30px;
+            background: var(--glass); 
+            backdrop-filter: blur(12px);
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
             margin-bottom: 50px;
             width: 100%;
             max-width: 850px;
-            filter: drop-shadow(12px 12px 0px black); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .diary-entry:hover {
+            transform: scale(1.01);
+            border-color: var(--accent-pink);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 182, 193, 0.1);
         }
 
         .diary-entry h3 {
+            font-family: var(--gothic);
             font-size: 32px;
-            margin-bottom: 15px;
-            border-bottom: 6px solid rgb(83, 83, 83);
+            margin-bottom: 20px;
+            color: var(--accent-pink);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
             display: inline-block;
             padding-bottom: 5px;
         }
 
         .diary-entry p {
             font-size: 20px;
-            line-height: 1.7;
+            line-height: 1.8;
             text-align: justify;
+            color: #efefef;
         }
 
-        #backToTop {
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: rgb(129, 0, 0);
-            color: rgb(180, 47, 47);
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 4px 4px 0px black;
-            transition: 0.3s;
-        }
-
-        #backToTop:hover {
-            background-color: #ffb6c1;
-            transform: translateY(-3px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgb(98, 4, 4);
-            border-top: 4px solid white; 
-            font-weight: bold;
-            color: white;
-        }
     </style>
 </head>
 <body>
 
+<div id="cursor-follower"></div>
+
 <header id="top">
-    <h1><a href="index.html">𝕸𝖞 𝕮𝖔𝖑𝖑𝖊𝖌𝖊 𝕯𝖎𝖆𝖗𝖞</a></h1>
+    <h1><a href="index.html">My College Diary</a></h1>
     <nav>
-       <a href="index.html">𝕳𝖔𝖒𝖊</a> 
-        <a href="about.html">𝕬𝖇𝖔𝖚𝖙</a>
-        <a href="diaryy.html">𝕯𝖎𝖆𝖗𝖞</a>
-        <a href="gallery.html">𝕲𝖆𝖑𝖑𝖊𝖗𝖞</a>
-        <a href="contact.html">𝕮𝖔𝖓𝖙𝖆𝖈𝖙</a>
+        <a href="index.html">Home</a> 
+        <a href="about.html">About</a>
+        <a href="diary.html">Diary</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
     </nav>
 </header>
 
 <section>
     <div class="diary-entry">
-        <h3> The First day nerves</h3>
-        <p>Walking into campus not knowing anyone, overthinking everything—what to wear, where to sit, how to act.
-           Wandering around buildings like you know where you’re going… but actually checking your phone every 2 minutes.
-        </p>
+        <h3>The First day nerves</h3>
+        <p>Walking into campus not knowing anyone, overthinking everything—what to wear, where to sit, how to act. Wandering around buildings like you know where you’re going… but actually checking your phone every 2 minutes.</p>
     </div>
-
-   <div class="diary-entry">
-        <h3> The Reality hits </h3>
-        <p> When you realized college isn’t like high school—deadlines, professors, independence. 
-            Figuring things out on your own—commuting, managing time, surviving a whole day of classes.
-        But somewhere in between the stress, the awkward silences, and the long days, things started to change.
-         I found people who made me laugh, moments that made me feel seen, and little reasons to keep going.</p>
-    </div>
-
-        
-       <div class="diary-entry">
-
-        <h3>The “everything felt new” atmosphere</h3>
-        <p> Every day felt like stepping into a place that wasn’t mine yet.
-             The classrooms were bigger, the hallways louder, and the faces around me were all strangers living their own stories. Slowly, unfamiliar became routine. The once-confusing paths became familiar walks. The strangers became classmates, then friends. The fear didn’t disappear completely, but it softened. </p>
-    </div>
-
 
     <div class="diary-entry">
-
-        <h3>The “first breakdown / first comeback” </h3>
-        <p> So far, that was my first real breakdown. The people I treated as friends—like family—ended up betraying me over something so small. But in the middle of that, I found my comeback: I met people who are genuinely kind, fun, and who truly care about each other </p>
+        <h3>The Reality hits</h3>
+        <p>When you realized college isn’t like high school—deadlines, professors, independence. Figuring things out on your own—commuting, managing time, surviving a whole day of classes. But somewhere in between the stress, the awkward silences, and the long days, things started to change.</p>
     </div>
-    </section>
+
+    <div class="diary-entry">
+        <h3>The “everything felt new” atmosphere</h3>
+        <p>Every day felt like stepping into a place that wasn’t mine yet. The classrooms were bigger, the hallways louder, and the faces around me were all strangers living their own stories. Slowly, unfamiliar became routine.</p>
+    </div>
+
+    <div class="diary-entry">
+        <h3>The “first breakdown / first comeback”</h3>
+        <p>So far, that was my first real breakdown. The people I treated as friends—like family—ended up betraying me over something so small. But in the middle of that, I found my comeback: I met people who are genuinely kind, fun, and who truly care about each other.</p>
+    </div>
+</section>
+
+<footer>
+    &copy; 2024 Angelica's Lore — Archive of a Main Character
+</footer>
+
+<script>
+    const follower = document.getElementById('cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+        // Cursor Movement
+        follower.style.left = e.clientX + 'px';
+        follower.style.top = e.clientY + 'px';
+
+        // Background Interaction
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, #4e0000 0%, #310000 70%)`;
+    });
+</script>
+
 </body>
 </html>
